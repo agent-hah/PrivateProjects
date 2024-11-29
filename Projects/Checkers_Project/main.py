@@ -15,7 +15,7 @@ def get_row_col_from_mouse(pos):
     col = x // SQUARE_SIZE
     return row, col
 
-def main():
+async def main():
     run = True
     clock = pygame.time.Clock()
     game = Game(WIN)
@@ -54,12 +54,11 @@ def main():
 
     
         game.update()
+        await asyncio.sleep(0)
     
     pygame.quit()
     quit()
 
 
 if __name__ == '__main__':  
-    main()
-    
-    
+    asyncio.run(main())
