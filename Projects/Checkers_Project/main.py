@@ -53,7 +53,6 @@ def main():
 
     
         game.update()
-        await asyncio.sleep(0)
     
     pygame.quit()
     quit()
