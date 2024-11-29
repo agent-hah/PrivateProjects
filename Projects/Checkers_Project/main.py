@@ -1,5 +1,4 @@
 import pygame
-import asyncio
 from checkers.constants import WIDTH, HEIGHT, SQUARE_SIZE, RED, WHITE
 from checkers.game import Game
 from minimax.algorithm import minimax, get_all_moves
@@ -14,8 +13,8 @@ def get_row_col_from_mouse(pos):
     row = y // SQUARE_SIZE
     col = x // SQUARE_SIZE
     return row, col
-
-async def main():
+ 
+def main():
     run = True
     clock = pygame.time.Clock()
     game = Game(WIN)
@@ -61,4 +60,4 @@ async def main():
 
 
 if __name__ == '__main__':  
-    asyncio.run(main())
+    main()
