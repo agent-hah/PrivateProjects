@@ -1,4 +1,5 @@
 import pygame
+import asyncio
 from checkers.constants import WIDTH, HEIGHT, SQUARE_SIZE, RED, WHITE
 from checkers.game import Game
 from minimax.algorithm import minimax, get_all_moves
@@ -59,8 +60,6 @@ def main():
 
 
 if __name__ == '__main__':  
-    game = Game(WIN)
-    print(game.board.board)
     main()
     
     
