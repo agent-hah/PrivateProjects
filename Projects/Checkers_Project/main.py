@@ -1,10 +1,12 @@
+import os
+os.environ['SDL_AUDIODRIVER'] = 'directx'
 import pygame
 from checkers.constants import WIDTH, HEIGHT, SQUARE_SIZE, RED, WHITE
 from checkers.game import Game
 from minimax.algorithm import minimax, get_all_moves
 
 FPS = 60
-
+pygame.init()
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('Checkers')
 
@@ -23,6 +25,7 @@ def main():
 
     while run:
         clock.tick(FPS)
+        game.win.fill((255,255,255))
         if game.turn == WHITE:
             value, new_board = minimax(game.get_board(), 4, float('-inf'), float('inf'), True, game)
             game.ai_move(new_board)
