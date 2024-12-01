@@ -125,3 +125,14 @@ class Canvas:
         except Exception as e:
             print(f"Error loading object: {e}")
             raise
+    
+    def undo(self, row, col):
+        clockwise = [MAROON, DARK_RED, BROWN, FIREBRICK, CRIMSON, RED, TOMATO, ORANGE_RED, DARK_ORANGE, ORANGE, OLIVE, YELLOW, GREEN, FOREST_GREEN, DARK_SEA_GREEN, TEAL, DARK_CYAN, CYAN, TURQUOISE, SKY_BLUE, NAVY, BLUE, DARK_VIOLET, PURPLE, PINK, TAN, BLACK, WHITE]
+        pixel = self.get_pixel(row, col)
+        idx = clockwise.index(pixel.color)
+        new_idx = idx - 1 
+        if (new_idx < 0):
+           new_idx = (len(clockwise) - 1)
+        color = clockwise[new_idx]
+        pixel.change_color(color)
+        self.draw()
