@@ -40,3 +40,25 @@ class Canvas:
             self.canvas.append([])
             for col in range(self.cols):
                 self.canvas[row].append(Pixel(row, col, color=BLACK))
+
+    def select(self, row, col):
+        if self.selected:
+            result = self._move(row,col)
+            if not result:
+                self.selected = None
+                self.select(row, col)
+        
+        piece = self.board.get_piece(row, col)
+        if piece != 0 and piece.color == self.turn:
+            self.selected = piece
+            self.valid_moves = self.board.get_valid_moves(piece)
+            return True
+    
+    def change_color(self, row, col):
+        clockwise = [MAROON, DARK_RED, BROWN, FIREBRICK, CRIMSON, RED, TOMATO, ORANGE_RED, DARK_ORANGE, ORANGE, OLIVE, YELLOW, GREEN, FOREST_GREEN, DARK_SEA_GREEN, TEAL, DARK_CYAN, AQUA, CYAN, TURQUOISE, SKY_BLUE, NAVY, BLUE, DARK_VIOLET, PURPLE, PINK, TAN, BLACK, WHITE]
+        pixel = self.get_pixel(row, col)
+        idx = clockwise.index(pixel.color)
+        new_idx = idx + 1
+        color = clockwise[new_idx]
+        pixel.change_color(color)
+        self.draw

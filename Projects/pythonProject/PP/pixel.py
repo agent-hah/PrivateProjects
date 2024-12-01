@@ -18,4 +18,4 @@ class Pixel():
         self.color = color
     
     def __repr__(self):
-        return str('pixel')
+        return str('pixel' + str(self.color))
