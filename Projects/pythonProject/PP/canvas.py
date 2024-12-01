@@ -33,7 +33,7 @@ class Canvas:
     def change_pixel_color(self, color, row, col):
         pixel = self.get_pixel(row, col)
         pixel.change_color(color)
-        self.draw
+        self.draw()
         
     def create_canvas(self):
         for row in range(self.rows):
