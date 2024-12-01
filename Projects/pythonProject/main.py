@@ -29,14 +29,6 @@ def main():
                 row, col = get_row_col_from_mouse(pos)
                 canvas.select(row,col)
 
-        pygame.time.delay(1000)
-        canvas.change_all_pixel_color(DARK_SEA_GREEN)
-        pygame.time.delay(1000)
-        canvas.change_all_pixel_color(FIREBRICK)
-        pygame.time.delay(1000)
-        canvas.change_pixel_color(PINK, 0, 4)
-
-
 if __name__ == '__main__':
     main()
 

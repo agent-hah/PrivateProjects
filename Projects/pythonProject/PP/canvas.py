@@ -58,6 +58,8 @@ class Canvas:
         pixel = self.get_pixel(row, col)
         idx = clockwise.index(pixel.color)
         new_idx = idx + 1
+        if (new_idx > len(clockwise) - 1):
+           new_idx = 0 
         color = clockwise[new_idx]
         pixel.change_color(color)
         self.draw()
