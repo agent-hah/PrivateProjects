@@ -1,6 +1,8 @@
 import pygame
 from .constants import *
 from .pixel import Pixel
+import pickle
+import os
 
 class Canvas:
     def __init__(self, win, rows = ROWS, cols = COLS):
@@ -63,3 +65,63 @@ class Canvas:
         color = clockwise[new_idx]
         pixel.change_color(color)
         self.draw()
+    
+
+    def save_object(self, file_name=None, directory=None):
+        """
+        Saves a Python object to a file using pickle.
+        
+        Parameters:
+            obj (object): The object to save.
+            file_name (str, optional): The name of the file to save the object to. If not provided, a default name is used.
+        
+        Returns:
+            str: The path to the saved file.
+        """
+        # Generate a default file name if one isn't provided
+        if file_name is None:
+            file_name = "saved_object.pkl"
+
+        # Ensure the file has the .pkl extension
+        if not file_name.endswith(".pkl"):
+            file_name += ".pkl"
+
+        # Use the provided directory or the current working directory
+        if directory:
+            # Create the directory if it doesn't exist
+            os.makedirs(directory, exist_ok=True)
+            file_path = os.path.join(directory, file_name)
+        else:
+            file_path = file_name
+
+        # Save the object to the file
+        try:
+            with open(file_path, "wb") as file:
+                pickle.dump(self.canvas, file)
+            print(f"Object successfully saved to {file_path}")
+        except Exception as e:
+            print(f"Error saving object: {e}")
+            raise
+
+        return os.path.abspath(file_path)
+    
+    def load_object(self, file_path):
+        """
+        Loads a Python object from a pickle file.
+        
+        Parameters:
+            file_path (str): The path to the pickle file.
+        
+        Returns:
+            object: The deserialized Python object.
+        """
+        try:
+            with open(file_path, "rb") as file:
+                obj = pickle.load(file)
+            print(f"Object successfully loaded from {file_path}")
+            self.canvas = obj
+            self.draw()
+            
+        except Exception as e:
+            print(f"Error loading object: {e}")
+            raise

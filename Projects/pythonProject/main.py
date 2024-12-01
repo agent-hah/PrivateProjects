@@ -4,7 +4,7 @@ from PP import *
 FPS = 1
 
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption('HBD MAMA')
+pygame.display.set_caption('Painter')
 
 def get_row_col_from_mouse(pos):
     x, y = pos
@@ -23,6 +23,13 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
+            
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_q:
+                    canvas.save_object('saved_painting','/workspaces/PrivateProjects/Projects/pythonProject/saved_files')
+                if event.key == pygame.K_l:
+                    canvas.load_object('/workspaces/PrivateProjects/Projects/pythonProject/saved_files/saved_painting.pkl')
+                    
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 pos = pygame.mouse.get_pos()
@@ -31,5 +38,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
