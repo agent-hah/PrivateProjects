@@ -1,7 +1,7 @@
 import pygame
 from PP import *
 
-FPS = 1
+FPS = 60
 
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('Painter')
