@@ -61,4 +61,4 @@ class Canvas:
         new_idx = idx + 1
         color = clockwise[new_idx]
         pixel.change_color(color)
-        self.draw
+        self.draw()
