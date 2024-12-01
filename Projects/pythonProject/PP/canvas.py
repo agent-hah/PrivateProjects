@@ -8,6 +8,7 @@ class Canvas:
         self.canvas = []
         self.rows = rows
         self.cols = cols
+        self.selected = None
         self.create_canvas()
     
     def get_pixel(self, row, col):
@@ -43,18 +44,16 @@ class Canvas:
 
     def select(self, row, col):
         if self.selected:
-            result = self._move(row,col)
+            result = self._change_color(row,col)
             if not result:
                 self.selected = None
                 self.select(row, col)
         
-        piece = self.board.get_piece(row, col)
-        if piece != 0 and piece.color == self.turn:
-            self.selected = piece
-            self.valid_moves = self.board.get_valid_moves(piece)
-            return True
+        piece = self.get_pixel(row, col)
+        self.selected = piece
+        return True
     
-    def change_color(self, row, col):
+    def _change_color(self, row, col):
         clockwise = [MAROON, DARK_RED, BROWN, FIREBRICK, CRIMSON, RED, TOMATO, ORANGE_RED, DARK_ORANGE, ORANGE, OLIVE, YELLOW, GREEN, FOREST_GREEN, DARK_SEA_GREEN, TEAL, DARK_CYAN, AQUA, CYAN, TURQUOISE, SKY_BLUE, NAVY, BLUE, DARK_VIOLET, PURPLE, PINK, TAN, BLACK, WHITE]
         pixel = self.get_pixel(row, col)
         idx = clockwise.index(pixel.color)
