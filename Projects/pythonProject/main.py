@@ -27,10 +27,14 @@ def main():
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_q:
                     canvas.save_object('saved_painting','/workspaces/PrivateProjects/Projects/pythonProject/saved_files')
-                if event.key == pygame.K_l:
+                if event.key == pygame.K_p:
                     canvas.load_object('/workspaces/PrivateProjects/Projects/pythonProject/saved_files/saved_painting.pkl')
                 if event.key == pygame.K_z:
                     canvas.undo(row, col)
+                if event.key == pygame.K_i:
+                    canvas.change_all_pixel_color
+                if event.key == pygame.K_o:
+                    canvas.reset
                     
 
             if event.type == pygame.MOUSEBUTTONDOWN:
