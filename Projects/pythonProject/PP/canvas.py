@@ -36,13 +36,16 @@ class Canvas:
         color = clockwise[idx]
         for row in range(len(self.canvas)):
             for col in range(len(self.canvas[0])):
-                self.canvas[row][col] = Pixel(row, col, color = color)
+                pixel = self.get_pixel(row, col)
+                pixel.change_color(color)
+                print(f'{pixel.color}')
         self.draw()
     
     def reset(self):
         for row in range(len(self.canvas)):
             for col in range(len(self.canvas[0])):
-                self.canvas[row][col] = Pixel(row, col, color = BLACK)
+                pixel = self.get_pixel(row, col)
+                pixel.change_color(BLACK)
         self.draw()
     
     def change_pixel_color(self, color, row, col):

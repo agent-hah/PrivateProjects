@@ -31,9 +31,9 @@ def main():
                     canvas.load_object('/workspaces/PrivateProjects/Projects/pythonProject/saved_files/saved_painting.pkl')
                 if event.key == pygame.K_z:
                     canvas.undo(row, col)
-                if event.key == pygame.K_i:
+                if event.key == pygame.K_1:
                     canvas.change_all_pixel_color
-                if event.key == pygame.K_o:
+                if event.key == pygame.K_2:
                     canvas.reset
                     
 
