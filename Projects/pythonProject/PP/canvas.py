@@ -12,6 +12,7 @@ class Canvas:
         self.cols = cols
         self.selected = None
         self.create_canvas()
+        self.idx = 0
     
     def get_pixel(self, row, col):
         if 0 <= row < self.rows and 0 <= col < self.cols:
@@ -29,19 +30,18 @@ class Canvas:
         
     def change_all_pixel_color(self):
         clockwise = [MAROON, DARK_RED, BROWN, FIREBRICK, CRIMSON, RED, TOMATO, ORANGE_RED, DARK_ORANGE, ORANGE, OLIVE, YELLOW, GREEN, FOREST_GREEN, DARK_SEA_GREEN, TEAL, DARK_CYAN, CYAN, TURQUOISE, SKY_BLUE, NAVY, BLUE, DARK_VIOLET, PURPLE, PINK, TAN, BLACK, WHITE]
-        idx = 0
-        idx += 1
-        if (idx > len(clockwise) - 1):
-           idx = 0 
-        color = clockwise[idx]
+        self.idx += 1
+        if (self.idx > len(clockwise) - 1):
+           self.idx = 0 
+        color = clockwise[self.idx]
         for row in range(len(self.canvas)):
             for col in range(len(self.canvas[0])):
                 pixel = self.get_pixel(row, col)
                 pixel.change_color(color)
-                print(f'{pixel.color}')
         self.draw()
     
     def reset(self):
+        self.idx = 0
         for row in range(len(self.canvas)):
             for col in range(len(self.canvas[0])):
                 pixel = self.get_pixel(row, col)
