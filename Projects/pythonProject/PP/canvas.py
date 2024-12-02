@@ -28,10 +28,21 @@ class Canvas:
             
         
     def change_all_pixel_color(self, color):
+        clockwise = [MAROON, DARK_RED, BROWN, FIREBRICK, CRIMSON, RED, TOMATO, ORANGE_RED, DARK_ORANGE, ORANGE, OLIVE, YELLOW, GREEN, FOREST_GREEN, DARK_SEA_GREEN, TEAL, DARK_CYAN, CYAN, TURQUOISE, SKY_BLUE, NAVY, BLUE, DARK_VIOLET, PURPLE, PINK, TAN, BLACK, WHITE]
+        idx = 0
+        idx += 1
+        if (new_idx > len(clockwise) - 1):
+           new_idx = 0 
+        color = clockwise[idx]
         for row in range(len(self.canvas)):
             for col in range(len(self.canvas[0])):
                 self.canvas[row][col] = Pixel(row, col, color = color)
         self.draw()
+    
+    def reset(self):
+        for row in range(len(self.canvas)):
+            for col in range(len(self.canvas[0])):
+                self.canvas[row][col] = Pixel(row, col, color = BLACK)
     
     def change_pixel_color(self, color, row, col):
         pixel = self.get_pixel(row, col)
