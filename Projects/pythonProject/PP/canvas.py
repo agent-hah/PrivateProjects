@@ -27,12 +27,12 @@ class Canvas:
         pygame.display.update()
             
         
-    def change_all_pixel_color(self, color):
+    def change_all_pixel_color(self):
         clockwise = [MAROON, DARK_RED, BROWN, FIREBRICK, CRIMSON, RED, TOMATO, ORANGE_RED, DARK_ORANGE, ORANGE, OLIVE, YELLOW, GREEN, FOREST_GREEN, DARK_SEA_GREEN, TEAL, DARK_CYAN, CYAN, TURQUOISE, SKY_BLUE, NAVY, BLUE, DARK_VIOLET, PURPLE, PINK, TAN, BLACK, WHITE]
         idx = 0
         idx += 1
-        if (new_idx > len(clockwise) - 1):
-           new_idx = 0 
+        if (idx > len(clockwise) - 1):
+           idx = 0 
         color = clockwise[idx]
         for row in range(len(self.canvas)):
             for col in range(len(self.canvas[0])):
@@ -43,6 +43,7 @@ class Canvas:
         for row in range(len(self.canvas)):
             for col in range(len(self.canvas[0])):
                 self.canvas[row][col] = Pixel(row, col, color = BLACK)
+        self.draw()
     
     def change_pixel_color(self, color, row, col):
         pixel = self.get_pixel(row, col)
