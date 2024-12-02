@@ -33,10 +33,8 @@ def main():
                     canvas.undo(row, col)
                 if event.key == pygame.K_1:
                     canvas.change_all_pixel_color()
-                    print("ran change_all_color function")
                 if event.key == pygame.K_2:
                     canvas.reset()
-                    print('ran reset function')
                     
 
             if event.type == pygame.MOUSEBUTTONDOWN:
