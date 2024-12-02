@@ -133,7 +133,7 @@ class SnakeGame():
 
 if __name__ == '__main__':
     game = SnakeGame()
-
+    pygame.time.delay(2000)
     # game loop
     while True:
         game_over, score = game.play_step()
