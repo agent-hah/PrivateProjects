@@ -29,8 +29,8 @@ class Canvas:
             for col in range(len(self.canvas[0])):
                 pixel = self.get_pixel(row, col)
                 pygame.draw.rect(self.win, pixel.color, (pixel.x, pixel.y, SQUARE_SIZE, SQUARE_SIZE))
-        text = font.render("Red:1, Purple:2, Blue:3, Cyan:4, Green:5, Yellow: 6, Orange:7", True, WHITE)
-        self.win.blit(text, [0,0])
+        text = font.render("Red:1 Purple:2 Blue:3 Cyan:4 Green:5 Yellow: 6 Orange:7", True, WHITE)
+        self.win.blit(text, [80,0])
         pygame.display.update()
             
         
@@ -73,15 +73,13 @@ class Canvas:
     
     def change_color(self, row, col):
         clockwise = [MAROON, DARK_RED, BROWN, FIREBRICK, CRIMSON, RED, TOMATO, ORANGE_RED, DARK_ORANGE, ORANGE, OLIVE, YELLOW, GREEN, FOREST_GREEN, DARK_SEA_GREEN, TEAL, DARK_CYAN, CYAN, TURQUOISE, SKY_BLUE, NAVY, BLUE, DARK_VIOLET, PURPLE, PINK, TAN, BLACK, WHITE]
-        pixel = self.get_pixel(row, col)
-        idx = clockwise.index(pixel.color)
+        idx = clockwise.index(self.color)
         new_idx = idx + 1
         if (new_idx > len(clockwise) - 1):
            new_idx = 0 
         color = clockwise[new_idx]
-        pixel.change_color(color)
         self.color = color
-        self.draw()
+        print(f'color changed to {self.color}')
     
     def _paint(self, row, col):
         pixel = self.get_pixel(row, col)
