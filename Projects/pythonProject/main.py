@@ -1,6 +1,7 @@
 import pygame
 from PP import *
 
+pygame.init()
 FPS = 60
 
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -31,10 +32,24 @@ def main():
                     canvas.load_object('/workspaces/PrivateProjects/Projects/pythonProject/saved_files/saved_painting.pkl')
                 if event.key == pygame.K_z:
                     canvas.undo(row, col)
-                if event.key == pygame.K_1:
+                if event.key == pygame.K_w:
                     canvas.change_all_pixel_color()
-                if event.key == pygame.K_2:
+                if event.key == pygame.K_e:
                     canvas.reset()
+                if event.key == pygame.K_1:
+                    canvas.check_KEYDOWN(1)
+                if event.key == pygame.K_2:
+                    canvas.check_KEYDOWN(2)
+                if event.key == pygame.K_3:
+                    canvas.check_KEYDOWN(3)
+                if event.key == pygame.K_4:
+                    canvas.check_KEYDOWN(4)
+                if event.key == pygame.K_5:
+                    canvas.check_KEYDOWN(5)
+                if event.key == pygame.K_6:
+                    canvas.check_KEYDOWN(6)
+                if event.key == pygame.K_7:
+                    canvas.check_KEYDOWN(7)
                     
 
             if event.type == pygame.MOUSEBUTTONDOWN:
