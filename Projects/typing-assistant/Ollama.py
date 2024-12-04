@@ -15,14 +15,14 @@ OLLAMA_CONFIG = {
 }
 
 PROMPT_TEMPLATE = Template(
-    """$prompt
+    """Please fix the writing and grammar errors in the following text:
     
     $text
 
     provide only the response, do not include a preamble""")
 
 def run_prompt(text):
-    prompt = PROMPT_TEMPLATE.substitute(prompt = str(input("state your prompt")), text=text)
+    prompt = PROMPT_TEMPLATE.substitute(text=text)
     response = httpx.post(OLLAMA_ENDPOINT,
                           json={'prompt':prompt, **OLLAMA_CONFIG},
                           headers={'Content-Type': 'application/json'},
