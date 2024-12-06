@@ -18,7 +18,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Create an environment if it does not exist
 ENV CONDA_ENV_NAME my_env_name
 
-RUN conda create -n $CONDA_ENV_NAME python=3.8 \
+RUN conda create -n $CONDA_ENV_NAME python=3.12 \
     && conda activate $CONDA_ENV_NAME \
     && conda install --yes --ignore-pip-version pip setuptools wheel \
     && conda clean --all --nohup --recursive
