@@ -18,7 +18,11 @@
 				"GitHub.vscode-pull-request-github",
 				"GitHub.copilot-chat",
 				"GitHub.copilot",
-				"ms-azuretools.vscode-docker"
+				"ms-azuretools.vscode-docker",
+				"ms-dotnettools.csdevkit",
+				"ms-dotnettools.csharp",
+				"ms-dotnettools.vscode-dotnet-runtime",
+				"ms-dotnettools.vscodeintellicode-csharp"
 			]
 		}
 	}
