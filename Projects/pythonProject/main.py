@@ -51,7 +51,7 @@ def main():
                 if event.key == pygame.K_7:
                     canvas.check_KEYDOWN(7)
                 if event.key == pygame.K_c:
-                    canvas.change_color(row, col)
+                    canvas.change_color()
                     
 
             if event.type == pygame.MOUSEBUTTONDOWN:
