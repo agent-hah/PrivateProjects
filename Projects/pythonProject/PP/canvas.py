@@ -35,11 +35,10 @@ class Canvas:
             
         
     def change_all_pixel_color(self):
-        clockwise = [MAROON, DARK_RED, BROWN, FIREBRICK, CRIMSON, RED, TOMATO, ORANGE_RED, DARK_ORANGE, ORANGE, OLIVE, YELLOW, GREEN, FOREST_GREEN, DARK_SEA_GREEN, TEAL, DARK_CYAN, CYAN, TURQUOISE, SKY_BLUE, NAVY, BLUE, DARK_VIOLET, PURPLE, PINK, TAN, BLACK, WHITE]
         self.idx += 1
-        if (self.idx > len(clockwise) - 1):
+        if (self.idx > len(CLOCKWISE) - 1):
            self.idx = 0 
-        self.color = clockwise[self.idx]
+        self.color = CLOCKWISE[self.idx]
         for row in range(len(self.canvas)):
             for col in range(len(self.canvas[0])):
                 pixel = self.get_pixel(row, col)
@@ -71,13 +70,12 @@ class Canvas:
         self.selected = piece
         return True
     
-    def change_color(self, row, col):
-        clockwise = [MAROON, DARK_RED, BROWN, FIREBRICK, CRIMSON, RED, TOMATO, ORANGE_RED, DARK_ORANGE, ORANGE, OLIVE, YELLOW, GREEN, FOREST_GREEN, DARK_SEA_GREEN, TEAL, DARK_CYAN, CYAN, TURQUOISE, SKY_BLUE, NAVY, BLUE, DARK_VIOLET, PURPLE, PINK, TAN, BLACK, WHITE]
-        idx = clockwise.index(self.color)
+    def change_color(self):
+        idx = CLOCKWISE.index(self.color)
         new_idx = idx + 1
-        if (new_idx > len(clockwise) - 1):
+        if (new_idx > len(CLOCKWISE) - 1):
            new_idx = 0 
-        color = clockwise[new_idx]
+        color = CLOCKWISE[new_idx]
         self.color = color
         print(f'color changed to {self.color}')
     
@@ -146,13 +144,12 @@ class Canvas:
             raise
     
     def undo(self, row, col):
-        clockwise = [MAROON, DARK_RED, BROWN, FIREBRICK, CRIMSON, RED, TOMATO, ORANGE_RED, DARK_ORANGE, ORANGE, OLIVE, YELLOW, GREEN, FOREST_GREEN, DARK_SEA_GREEN, TEAL, DARK_CYAN, CYAN, TURQUOISE, SKY_BLUE, NAVY, BLUE, DARK_VIOLET, PURPLE, PINK, TAN, BLACK, WHITE]
         pixel = self.get_pixel(row, col)
-        idx = clockwise.index(pixel.color)
+        idx = CLOCKWISE.index(pixel.color)
         new_idx = idx - 1 
         if (new_idx < 0):
-           new_idx = (len(clockwise) - 1)
-        color = clockwise[new_idx]
+           new_idx = (len(CLOCKWISE) - 1)
+        color = CLOCKWISE[new_idx]
         pixel.change_color(color)
         self.draw()
     
