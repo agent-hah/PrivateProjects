@@ -17,6 +17,7 @@ class Canvas:
         self.create_canvas()
         self.idx = 0
         self.color = BLACK
+        self.background = BLACK
     
     def get_pixel(self, row, col):
         if 0 <= row < self.rows and 0 <= col < self.cols:
@@ -39,11 +40,11 @@ class Canvas:
         self.idx += 1
         if (self.idx > len(CLOCKWISE) - 1):
            self.idx = 0 
-        self.color = CLOCKWISE[self.idx]
+        self.background = CLOCKWISE[self.idx]
         for row in range(len(self.canvas)):
             for col in range(len(self.canvas[0])):
                 pixel = self.get_pixel(row, col)
-                pixel.change_color(self.color)
+                pixel.change_color(self.background)
         self.draw()
     
     def reset(self):
@@ -71,7 +72,7 @@ class Canvas:
         self.selected = piece
         return True
     
-    def change_color(self):
+    def next_color(self):
         idx = CLOCKWISE.index(self.color)
         new_idx = idx + 1
         if (new_idx > len(CLOCKWISE) - 1):
@@ -84,6 +85,9 @@ class Canvas:
         pixel = self.get_pixel(row, col)
         pixel.change_color(self.color)
         self.draw()
+    
+    def erase(self):
+        self.color = self.background
 
     def save_object(self, file_name=None, directory=None):
         """
@@ -144,15 +148,12 @@ class Canvas:
             print(f"Error loading object: {e}")
             raise
     
-    def undo(self, row, col):
-        pixel = self.get_pixel(row, col)
-        idx = CLOCKWISE.index(pixel.color)
+    def previous_color(self):
+        idx = CLOCKWISE.index(self.color)
         new_idx = idx - 1 
         if (new_idx < 0):
            new_idx = (len(CLOCKWISE) - 1)
-        color = CLOCKWISE[new_idx]
-        pixel.change_color(color)
-        self.draw()
+        self.color = CLOCKWISE[new_idx]
     
     def check_KEYDOWN(self, num):
         if num == 1:
