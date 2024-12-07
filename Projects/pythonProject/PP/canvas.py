@@ -33,7 +33,6 @@ class Canvas:
         text = font.render("Red:1 Orange:2 Yellow:3 Green:4 Cyan:5 Blue:6 Violet:7 Black:8 White:9", True, WHITE)
         self.win.blit(text, [0,0])
         pygame.display.update()
-        print("updating")
             
         
     def change_all_pixel_color(self):
@@ -79,7 +78,6 @@ class Canvas:
            new_idx = 0 
         color = CLOCKWISE[new_idx]
         self.color = color
-        print(f'color changed to {self.color}')
     
     def _paint(self, row, col):
         pixel = self.get_pixel(row, col)
@@ -120,7 +118,6 @@ class Canvas:
         try:
             with open(file_path, "wb") as file:
                 pickle.dump(self.canvas, file)
-            print(f"Object successfully saved to {file_path}")
         except Exception as e:
             print(f"Error saving object: {e}")
             raise
@@ -140,7 +137,6 @@ class Canvas:
         try:
             with open(file_path, "rb") as file:
                 obj = pickle.load(file)
-            print(f"Object successfully loaded from {file_path}")
             self.canvas = obj
             self.draw()
             

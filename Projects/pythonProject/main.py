@@ -21,7 +21,6 @@ def handle_drawing(canvas):
         canvas.change_color()
         return
     if mouse[0]:
-        print("mouse pressed")
         pos = pygame.mouse.get_pos()
         row, col = get_row_col_from_mouse(pos)
         canvas.select(row, col)
