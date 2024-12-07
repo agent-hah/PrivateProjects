@@ -15,7 +15,7 @@ PLAYER_VEL = 5
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 
 def get_background(name):
-    image = pygame.image.load(join('assets', 'Background', name))
+    image = pygame.image.load(join('Projects','Python_Platformer','assets', 'Background', name))
     __, __, width, height = image.get_rect()
     tiles = []
     
