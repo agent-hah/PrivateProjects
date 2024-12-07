@@ -13,6 +13,20 @@ def get_row_col_from_mouse(pos):
     col = x // SQUARE_SIZE
     return row, col
 
+def handle_drawing(canvas):
+    keys = pygame.key.get_pressed()
+    mouse = pygame.mouse.get_pressed()
+    
+    if keys[pygame.K_l]:
+        canvas.change_color()
+        return
+    if mouse[0]:
+        print("mouse pressed")
+        pos = pygame.mouse.get_pos()
+        row, col = get_row_col_from_mouse(pos)
+        canvas.select(row, col)
+        return True
+
 def main():
     run = True
     clock = pygame.time.Clock()
@@ -21,6 +35,7 @@ def main():
     while run:
         clock.tick(FPS)
         time = 0
+        
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
@@ -52,12 +67,11 @@ def main():
                     canvas.check_KEYDOWN(7)
                 if event.key == pygame.K_c:
                     canvas.change_color()
-                    
-
-            if event.type == pygame.MOUSEBUTTONDOWN:
-                pos = pygame.mouse.get_pos()
-                row, col = get_row_col_from_mouse(pos)
-                canvas.select(row,col)
+            #if event.type == pygame.MOUSEBUTTONDOWN:
+                #pos = pygame.mouse.get_pos()
+                #row, col = get_row_col_from_mouse(pos)
+                #canvas.select(row,col)
+        handle_drawing(canvas)
 
 if __name__ == '__main__':
     main()

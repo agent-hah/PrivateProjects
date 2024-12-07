@@ -68,6 +68,15 @@ def draw(window, background, bg_image, player):
 
     pygame.display.update()
 
+def handle_move(player):
+    keys = pygame.key.get_pressed()
+
+    player.x_vel = 0
+    if keys[pygame.K_a]:
+        player.move_left(PLAYER_VEL)
+    if keys[pygame.K_d]:
+        player.move_right(PLAYER_VEL)
+
 def main(window):
     clock = pygame.time.Clock()
     background, bg_image = get_background("Blue.png")
@@ -83,6 +92,8 @@ def main(window):
                 run = False
                 break
         
+        player.loop(FPS)
+        handle_move(player)
         draw(window, background, bg_image, player)
     pygame.quit()
     quit()

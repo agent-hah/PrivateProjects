@@ -32,6 +32,7 @@ class Canvas:
         text = font.render("Red:1 Purple:2 Blue:3 Cyan:4 Green:5 Yellow: 6 Orange:7", True, WHITE)
         self.win.blit(text, [80,0])
         pygame.display.update()
+        print("updating")
             
         
     def change_all_pixel_color(self):
