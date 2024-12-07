@@ -30,8 +30,8 @@ class Canvas:
             for col in range(len(self.canvas[0])):
                 pixel = self.get_pixel(row, col)
                 pygame.draw.rect(self.win, pixel.color, (pixel.x, pixel.y, SQUARE_SIZE, SQUARE_SIZE))
-        text = font.render("Red:1 Purple:2 Blue:3 Cyan:4 Green:5 Yellow: 6 Orange:7", True, WHITE)
-        self.win.blit(text, [80,0])
+        text = font.render("Red:1 Orange:2 Yellow:3 Green:4 Cyan:5 Blue:6 Violet:7 Black:8 White:9", True, WHITE)
+        self.win.blit(text, [0,0])
         pygame.display.update()
         print("updating")
             
@@ -160,20 +160,26 @@ class Canvas:
             self.color = RED
             return True
         elif num == 2:
-            self.color = PURPLE
+            self.color = ORANGE
             return True
         elif num == 3:
-            self.color = BLUE
-            return True
-        elif num == 4:
-            self.color = CYAN
-            return True
-        elif num == 5:
-            self.color = GREEN
-            return True
-        elif num == 6:
             self.color = YELLOW
             return True
-        elif num ==7:
-            self.color = ORANGE
+        elif num == 4:
+            self.color = GREEN
+            return True
+        elif num == 5:
+            self.color = CYAN
+            return True
+        elif num == 6:
+            self.color = BLUE
+            return True
+        elif num == 7:
+            self.color = VIOLET
+            return True
+        elif num ==8:
+            self.color = BLACK
+            return True
+        elif num == 9:
+            self.color = WHITE
             return True

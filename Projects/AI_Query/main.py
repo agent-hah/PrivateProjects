@@ -3,7 +3,6 @@ import httpx
 from string import Template
 
 root = Tk()
-root.title('Ollama_GPT')
 root.geometry("800x1000")
 input_prompt = None
 

@@ -65,6 +65,10 @@ def main():
                     canvas.check_KEYDOWN(6)
                 if event.key == pygame.K_7:
                     canvas.check_KEYDOWN(7)
+                if event.key == pygame.K_8:
+                    canvas.check_KEYDOWN(8)
+                if event.key == pygame.K_9:
+                    canvas.check_KEYDOWN(9)
                 if event.key == pygame.K_c:
                     canvas.next_color()
                 if event.key == pygame.K_d:
