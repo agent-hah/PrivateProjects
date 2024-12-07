@@ -15,7 +15,7 @@ PLAYER_VEL = 5
 window = pygame.display.set_mode((WIDTH, HEIGHT))
 
 
-class Player(pygame.sprite.sprite):
+class Player(pygame.sprite.Sprite):
     COLOR = (255, 0, 0)
 
     def __init__(self, x, y, width, height):
