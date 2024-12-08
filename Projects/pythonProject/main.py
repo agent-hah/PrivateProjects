@@ -24,6 +24,10 @@ def handle_drawing(canvas):
         row, col = get_row_col_from_mouse(pos)
         canvas.select(row, col)
         return True
+    if mouse[2]:
+        pos = pygame.mouse.get_pos()
+        row, col = get_row_col_from_mouse(pos)
+        canvas.sample(row,col)
 
 def main():
     run = True

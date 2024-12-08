@@ -151,6 +151,10 @@ class Canvas:
            new_idx = (len(CLOCKWISE) - 1)
         self.color = CLOCKWISE[new_idx]
     
+    def sample(self,row,col):
+        pixel = self.get_pixel(row, col)
+        self.color = pixel.color
+    
     def check_KEYDOWN(self, num):
         if num == 1:
             self.color = RED
