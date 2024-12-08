@@ -17,9 +17,8 @@ def handle_drawing(canvas):
     keys = pygame.key.get_pressed()
     mouse = pygame.mouse.get_pressed()
     
-    if keys[pygame.K_l]:
-        canvas.change_color()
-        return
+    if keys[pygame.K_w]:
+        canvas.change_all_pixel_color()
     if mouse[0]:
         pos = pygame.mouse.get_pos()
         row, col = get_row_col_from_mouse(pos)
@@ -46,8 +45,6 @@ def main():
                     canvas.load_object('/workspaces/PrivateProjects/Projects/pythonProject/saved_files/saved_painting.pkl')
                 if event.key == pygame.K_z:
                     canvas.previous_color()
-                if event.key == pygame.K_w:
-                    canvas.change_all_pixel_color()
                 if event.key == pygame.K_e:
                     canvas.reset()
                 if event.key == pygame.K_1:
