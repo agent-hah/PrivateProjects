@@ -62,7 +62,10 @@ class Canvas:
 
     def select(self, row, col):
         if self.selected:
+            old_canvas = self.canvas
             result = self._paint(row,col)
+            new_canvas = self.canvas
+            return old_canvas, new_canvas
             if not result:
                 self.selected = None
                 self.select(row, col)
@@ -70,6 +73,15 @@ class Canvas:
         piece = self.get_pixel(row, col)
         self.selected = piece
         return True
+    
+    def undo(self, old_canvas, new_canvas):
+        if self.canvas != old_canvas:
+            self.canvas = old_canvas
+        else:
+            self.canvas = new_canvas
+        
+    def get_canvas(self):
+        return self.canvas
     
     def next_color(self):
         idx = CLOCKWISE.index(self.color)

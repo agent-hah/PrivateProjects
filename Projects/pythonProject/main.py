@@ -22,8 +22,10 @@ def handle_drawing(canvas):
     if mouse[0]:
         pos = pygame.mouse.get_pos()
         row, col = get_row_col_from_mouse(pos)
-        canvas.select(row, col)
-        return True
+        old_canvas = canvas.get_canvas()
+        new_canvas = canvas.get_canvas()
+    if keys[pygame.K_z]:
+        canvas.undo(old_canvas, new_canvas)
     if mouse[2]:
         pos = pygame.mouse.get_pos()
         row, col = get_row_col_from_mouse(pos)
