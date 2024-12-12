@@ -6,7 +6,7 @@ import os
 import copy
 
 pygame.init()
-font = pygame.font.Font('arial.ttf',25)
+font = pygame.font.Font('arial.ttf',24)
 
 class Canvas:
     def __init__(self, win, rows = ROWS, cols = COLS):
@@ -50,7 +50,7 @@ class Canvas:
                 pixel = self.get_pixel(row, col)
                 pygame.draw.rect(self.win, pixel.color, (pixel.x, pixel.y, SQUARE_SIZE, SQUARE_SIZE))
         text = font.render("Red:1 Orange:2 Yellow:3 Green:4 Cyan:5 Blue:6 Violet:7 Black:8 White:9", True, WHITE)
-        self.win.blit(text, [0,0])
+        self.win.blit(text, [15,0])
         pygame.display.update()
             
         
