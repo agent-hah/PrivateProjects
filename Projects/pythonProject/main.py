@@ -2,7 +2,7 @@ import pygame
 from PP import *
 
 pygame.init()
-FPS = 90
+FPS = 120
 
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('Painter')
@@ -22,10 +22,8 @@ def handle_drawing(canvas):
     if mouse[0]:
         pos = pygame.mouse.get_pos()
         row, col = get_row_col_from_mouse(pos)
-        old_canvas = canvas.get_canvas()
-        new_canvas = canvas.get_canvas()
-    if keys[pygame.K_z]:
-        canvas.undo(old_canvas, new_canvas)
+        canvas.select(row, col)
+
     if mouse[2]:
         pos = pygame.mouse.get_pos()
         row, col = get_row_col_from_mouse(pos)
@@ -38,7 +36,6 @@ def main():
     
     while run:
         clock.tick(FPS)
-        time = 0
         
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -49,7 +46,7 @@ def main():
                     canvas.save_object('saved_painting','/workspaces/PrivateProjects/Projects/pythonProject/saved_files')
                 if event.key == pygame.K_p:
                     canvas.load_object('/workspaces/PrivateProjects/Projects/pythonProject/saved_files/saved_painting.pkl')
-                if event.key == pygame.K_z:
+                if event.key == pygame.K_x:
                     canvas.previous_color()
                 if event.key == pygame.K_e:
                     canvas.reset()
@@ -75,10 +72,14 @@ def main():
                     canvas.next_color()
                 if event.key == pygame.K_d:
                     canvas.erase()
-            #if event.type == pygame.MOUSEBUTTONDOWN:
-                #pos = pygame.mouse.get_pos()
-                #row, col = get_row_col_from_mouse(pos)
-                #canvas.select(row,col)
+                if event.key == pygame.K_z:
+                    canvas.undo()
+                if event.key == pygame.K_v:
+                    canvas.redo()
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                canvas.set_old_canvas()
+            if event.type == pygame.MOUSEBUTTONUP:
+                canvas.set_current_canvas()
         handle_drawing(canvas)
 
 if __name__ == '__main__':

@@ -3,6 +3,7 @@ from .constants import *
 from .pixel import Pixel
 import pickle
 import os
+import copy
 
 pygame.init()
 font = pygame.font.Font('arial.ttf',25)
@@ -18,13 +19,31 @@ class Canvas:
         self.idx = 0
         self.color = BLACK
         self.background = BLACK
+        self.old_canvas = None
+        self.current_canvas = None
     
     def get_pixel(self, row, col):
         if 0 <= row < self.rows and 0 <= col < self.cols:
             return self.canvas[row][col]
-        else:
-            raise IndexError(f"Pixel at row {row}, col {col} is out of bounds.")
-    
+        elif row < 0 and 0 <= col < self.cols:
+            return self.canvas[0][col]
+        elif row >= self.rows and 0 <= col < self.cols:
+            return self.canvas[self.rows-1][col]
+        elif 0 <= row < self.rows and col < 0:
+            return self.canvas[row][0]
+        elif 0 <= row < self.rows and col >= self.cols:
+            return self.canvas[row][self.cols -1]
+        elif row < 0 and col < 0:
+            return self.canvas[0][0]
+        elif row >= self.rows and col >= self.cols:
+            return self.canvas[self.rows-1][self.cols-1]
+        elif row < 0 and col >= self.cols:
+            return self.canvas[0][self.cols-1]
+        else: 
+            row >= self.rows and col < 0
+            return self.canvas[self.rows-1][0]
+            
+
     def draw(self):
         for row in range(len(self.canvas)):
             for col in range(len(self.canvas[0])):
@@ -62,10 +81,7 @@ class Canvas:
 
     def select(self, row, col):
         if self.selected:
-            old_canvas = self.canvas
             result = self._paint(row,col)
-            new_canvas = self.canvas
-            return old_canvas, new_canvas
             if not result:
                 self.selected = None
                 self.select(row, col)
@@ -74,11 +90,13 @@ class Canvas:
         self.selected = piece
         return True
     
-    def undo(self, old_canvas, new_canvas):
-        if self.canvas != old_canvas:
-            self.canvas = old_canvas
-        else:
-            self.canvas = new_canvas
+    def undo(self):
+        self.canvas = self.old_canvas
+        self.draw()
+
+    def redo(self):
+        self.canvas = self.current_canvas
+        self.draw()
         
     def get_canvas(self):
         return self.canvas
@@ -95,6 +113,14 @@ class Canvas:
         pixel = self.get_pixel(row, col)
         pixel.change_color(self.color)
         self.draw()
+    
+    def set_old_canvas(self):
+        self.old_canvas = copy.deepcopy(self.canvas)
+        return True
+    
+    def set_current_canvas(self):
+        self.current_canvas = copy.deepcopy(self.canvas)
+        return True
     
     def erase(self):
         self.color = self.background
