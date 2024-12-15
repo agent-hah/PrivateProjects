@@ -1,3 +1,5 @@
 {
-    "intellicodeCompletions.loggingLevel": "ALL"
+    "intellicodeCompletions.loggingLevel": "ALL",
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.typeCheckingMode": "basic"
 }
