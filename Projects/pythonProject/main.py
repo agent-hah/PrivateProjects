@@ -43,9 +43,9 @@ def main():
             
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_q:
-                    canvas.save_object('saved_painting','/workspaces/PrivateProjects/Projects/pythonProject/saved_files')
+                    canvas.save_object('saved_painting','/Volumes/External Storage/Users/ashmithandoo/Coding/PrivateProjects/Projects/pythonProject/saved_files')
                 if event.key == pygame.K_p:
-                    canvas.load_object('/workspaces/PrivateProjects/Projects/pythonProject/saved_files/saved_painting.pkl')
+                    canvas.load_object('/Volumes/External Storage/Users/ashmithandoo/Coding/PrivateProjects/Projects/pythonProject/saved_files/saved_painting.pkl')
                 if event.key == pygame.K_x:
                     canvas.previous_color()
                 if event.key == pygame.K_e:
